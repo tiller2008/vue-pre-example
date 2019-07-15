@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue中的条件渲染</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <div v-if="show">{{message}}</div>
+  <div v-else>bye world</div>
+  <div v-show="show" data-test="v-show">{{message}}</div>
+
+  <div v-if="show==='a'">this is A</div>
+  <div v-else-if="show==='b'">this is B</div>
+  <div v-else>this is others</div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            show: false,
+            message: "hello world"
+        }
+    })
+</script>
+</body>
+</html>
