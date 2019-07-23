@@ -14,13 +14,15 @@
   var vm = new Vue({
       el: '#app',
       data: {
-          list: [{id:1,meta: {hiddenIn:true}},
-              {id:2,meta: {hiddenIn:false}},
-              {id:3,meta: {hiddenIn:true}}]
+          list: [{id:1,meta: {hiddenIn:true,name:'a'}},
+              {id:2,meta: {hiddenIn:false,name:'b'}},
+              {id:3,meta: {hiddenIn:true,name:'c'}},
+              {id:4,meta: {name:'c'}}]
       },
       methods: {
           getList: function () {
               for (item of this.list) {
+                  // 当meta不存在 或者 （meta存在，但（hiddenIn没有 或者 为false））
                   if (!item.meta || item.meta && !item.meta.hiddenIn) {
                       console.log(item.id + '-' + !item.meta + '-' + !item.meta.hiddenIn)
                   }
