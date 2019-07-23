@@ -14,12 +14,16 @@
   var vm = new Vue({
       el: '#app',
       data: {
-          list: [1,2,3,4]
+          list: [{id:1,meta: {hiddenIn:true}},
+              {id:2,meta: {hiddenIn:false}},
+              {id:3,meta: {hiddenIn:true}}]
       },
       methods: {
           getList: function () {
-              if (this.list) {
-                  console.log(this.list.length)
+              for (item of this.list) {
+                  if (!item.meta || item.meta && !item.meta.hiddenIn) {
+                      console.log(item.id + '-' + !item.meta + '-' + !item.meta.hiddenIn)
+                  }
               }
           }
       }
