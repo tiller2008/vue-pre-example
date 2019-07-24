@@ -17,7 +17,7 @@
           list: [{id:1,meta: {hiddenIn:true,name:'a'}},
               {id:2,meta: {hiddenIn:false,name:'b'}},
               {id:3,meta: {hiddenIn:true,name:'c'}},
-              {id:4,meta: {name:'c'}}]
+              {id:4,meta: {name:'d'}}]
       },
       methods: {
           getList: function () {
@@ -25,6 +25,11 @@
                   // 当meta不存在 或者 （meta存在，但（hiddenIn没有 或者 为false））
                   if (!item.meta || item.meta && !item.meta.hiddenIn) {
                       console.log(item.id + '-' + !item.meta + '-' + !item.meta.hiddenIn)
+                  }
+                  // 空字符串视为false
+                  var access = ''
+                  if (access) {
+                      console.log(access.length)
                   }
               }
           }
