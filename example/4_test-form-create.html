@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Create</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/iview/dist/iview.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/form-create/dist/form-create.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/form-create@1.4.4/district/province_city_area.js"></script>
+  <style>
+    @import url("//cdn.jsdelivr.net/npm/iview/dist/styles/iview.css");
+
+    #app {
+      padding: 32px;
+    }
+
+    .ivu-date-picker {
+      width: 100% !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <form-create :rule="rule" :option="option"/>
+  </div>
+</body>
+<script>
+    vm = new Vue({
+        el: "#app",
+        data: {
+            option: {
+                onSubmit: (...arg) => vm.onSubmit(...arg)
+            },
+            rule: []
+        },
+        methods: {
+            getRule() {
+                fetch("http://file.lotkk.com/json-form2.json")
+                    .then(res => res.json())
+                    .then(rule => {
+                        this.rule = rule
+                    })
+            },
+            onSubmit(formData) {
+                alert(JSON.stringify(formData))
+            }
+        },
+        mounted() {
+            this.getRule()
+        }
+    })
+</script>
+</html>
